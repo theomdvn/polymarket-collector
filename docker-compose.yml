@@ -1,0 +1,11 @@
+services:
+  collector:
+    build: .
+    volumes:
+      - .:/app
+      - ./storage:/app/storage
+      - ../polymarket-backtest/data:/backtest-data
+    env_file:
+      - .env
+    command: python main.py
+    restart: unless-stopped

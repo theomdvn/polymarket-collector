@@ -1,0 +1,14 @@
+.env
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+storage/poly.db
+storage/parquet/
+.git/
+.gitignore
+*.md

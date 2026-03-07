@@ -1,0 +1,26 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# Data / storage
+storage/
+*.db
+*.sqlite
+*.parquet
+
+# Docker
+*.log
+
+# IDE
+.vscode/
+.idea/
