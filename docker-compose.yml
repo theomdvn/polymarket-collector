@@ -4,7 +4,7 @@ services:
     volumes:
       - .:/app
       - ./storage:/app/storage
-      - ../polymarket-backtest/data:/backtest-data
+      - ${BACKTEST_DATA_DIR:-../polymarket-backtest/data}:/backtest-data
     env_file:
       - .env
     command: python main.py

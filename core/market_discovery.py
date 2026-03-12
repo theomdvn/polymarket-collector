@@ -19,28 +19,33 @@ GAMMA_API_URL = "https://gamma-api.polymarket.com"
 _PAGE_LIMIT = 100
 
 # Slug prefix patterns per asset and horizon
+# Each pattern is a compiled regex; multiple alternatives use the | operator.
 _SLUG_PATTERNS: dict[str, dict[str, re.Pattern[str]]] = {
     "BTC": {
-        "daily":  re.compile(r"will-btc-close-higher-on-", re.IGNORECASE),
-        "hourly": re.compile(r"btc-up-or-down-next-hour", re.IGNORECASE),
+        "daily":  re.compile(r"will-btc-close-higher-on-|bitcoin-up-or-down-on-", re.IGNORECASE),
+        "4h":     re.compile(r"btc-updown-4h-", re.IGNORECASE),
+        "hourly": re.compile(r"btc-up-or-down-next-hour|bitcoin-up-or-down-[a-z]+-\d+-\d+(am|pm)-et", re.IGNORECASE),
         "15m":    re.compile(r"btc-up-or-down-next-15-min", re.IGNORECASE),
         "5m":     re.compile(r"btc-up-or-down-next-5-min", re.IGNORECASE),
     },
     "ETH": {
-        "daily":  re.compile(r"will-eth-close-higher-on-", re.IGNORECASE),
-        "hourly": re.compile(r"eth-up-or-down-next-hour", re.IGNORECASE),
+        "daily":  re.compile(r"will-eth-close-higher-on-|ethereum-up-or-down-on-", re.IGNORECASE),
+        "4h":     re.compile(r"eth-updown-4h-", re.IGNORECASE),
+        "hourly": re.compile(r"eth-up-or-down-next-hour|ethereum-up-or-down-[a-z]+-\d+-\d+(am|pm)-et", re.IGNORECASE),
         "15m":    re.compile(r"eth-up-or-down-next-15-min", re.IGNORECASE),
         "5m":     re.compile(r"eth-up-or-down-next-5-min", re.IGNORECASE),
     },
     "SOL": {
-        "daily":  re.compile(r"will-sol-close-higher-on-", re.IGNORECASE),
-        "hourly": re.compile(r"sol-up-or-down-next-hour", re.IGNORECASE),
+        "daily":  re.compile(r"will-sol-close-higher-on-|solana-up-or-down-on-", re.IGNORECASE),
+        "4h":     re.compile(r"sol-updown-4h-", re.IGNORECASE),
+        "hourly": re.compile(r"sol-up-or-down-next-hour|solana-up-or-down-[a-z]+-\d+-\d+(am|pm)-et", re.IGNORECASE),
         "15m":    re.compile(r"sol-up-or-down-next-15-min", re.IGNORECASE),
         "5m":     re.compile(r"sol-up-or-down-next-5-min", re.IGNORECASE),
     },
     "XRP": {
-        "daily":  re.compile(r"will-xrp-close-higher-on-", re.IGNORECASE),
-        "hourly": re.compile(r"xrp-up-or-down-next-hour", re.IGNORECASE),
+        "daily":  re.compile(r"will-xrp-close-higher-on-|xrp-up-or-down-on-", re.IGNORECASE),
+        "4h":     re.compile(r"xrp-updown-4h-", re.IGNORECASE),
+        "hourly": re.compile(r"xrp-up-or-down-next-hour|xrp-up-or-down-[a-z]+-\d+-\d+(am|pm)-et", re.IGNORECASE),
         "15m":    re.compile(r"xrp-up-or-down-next-15-min", re.IGNORECASE),
         "5m":     re.compile(r"xrp-up-or-down-next-5-min", re.IGNORECASE),
     },
@@ -52,10 +57,11 @@ _UPDOWN_SLUG_RE = re.compile(
     re.IGNORECASE,
 )
 _HORIZON_ALIASES: dict[str, set[str]] = {
-    "daily": {"daily", "1d", "24h"},
+    "daily":  {"daily", "1d", "24h"},
+    "4h":     {"4h", "4hr", "4-h", "4-hr"},
     "hourly": {"hourly", "1h", "60m", "1hr"},
-    "15m": {"15m", "15min", "15-min"},
-    "5m": {"5m", "5min", "5-min"},
+    "15m":    {"15m", "15min", "15-min"},
+    "5m":     {"5m", "5min", "5-min"},
 }
 
 

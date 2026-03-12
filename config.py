@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     CLOB_WS_URL: str = "wss://ws-subscriptions-clob.polymarket.com/ws/market"
     ASSETS: list[str] = ["BTC", "ETH", "SOL", "XRP"]
-    HORIZONS: list[str] = ["daily", "hourly", "15m", "5m"]
+    HORIZONS: list[str] = ["daily", "4h", "hourly", "15m", "5m"]
     DB_PATH: str = "storage/poly.db"
     TICK_BATCH_SIZE: int = 100
     TICK_FLUSH_INTERVAL: float = 5.0

@@ -11,7 +11,7 @@ class PolymarketMarket:
     slug: str
     question: str
     asset: str               # "BTC" | "ETH" | "SOL" | "XRP"
-    horizon: str             # "daily" | "hourly" | "15m" | "5m"
+    horizon: str             # "daily" | "4h" | "hourly" | "15m" | "5m"
     strike: float | None
     end_ts: int
     active: bool
